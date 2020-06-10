@@ -1,0 +1,25 @@
+{% macro error_messages(errors) %}
+{% if errors %}
+<div class="alert alert-danger">
+  {% for field in errors %}
+    <b>{{ field | capitalize }} field has following errors:</b><br>
+    {% for error in errors[field] %}
+    {{ error }}<br>
+    {% endfor %}
+  {% endfor %}
+</div>
+{% endif %}
+{% endmacro %}
+
+{% macro field_error_messages(field) %}
+{% if field.errors %}
+<br>
+<ul>
+{% for error in field.errors %}
+<li style="color:red">
+  {{ error }}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.title }} - {% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-3 my-4">
+    <a href="{{ url_for('edit_item', item_id=item.id) }}" class="btn btn-primary">Edit item</a>
+    <form class="delete-form" method="POST" action="{{ url_for('delete_item', item_id=item.id) }}">
+      {{ deleteItemForm.hidden_tag() }}
+      {{ deleteItemForm.submit(class="btn btn-danger", onclick="return confirm('Are you sure you want to delete this item?');") }}
+    </form>
+  </div>
+  <div class="col-lg-9">
+    <div class="card mt-4">
+      <div class="embed-responsive embed-responsive-16by9">
+        <img class="card-img-top embed-responsive-item" src="{% if item.image %}{{ url_for('uploads', filename=item.image) }}{% else %}{{ url_for('static', filename='images/placeholder.png') }}{% endif %}">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{ item.title }}</h3>
+        <h4>{{ "$%.2f" | format(item.price) }}</h4>
+        <p class="card-text">{{ item.description | safe }}</p>
+        <h4>
+          <div class="badge badge-secondary">{{ item.category }}</div> <br>
+          <div class="badge badge-secondary">{{ item.subcategory }}</div>
+        </h4>
+      </div>
+    </div>
+
+    <div class="card card-outline-secondary my-4">
+      <div class="card-header">
+        Product Reviews
+      </div>
+      <div class="card-body">
+        <form class="comment-form" action="{{ url_for('new_comment') }}" method="POST">
+          {{ commentForm.hidden_tag() }}
+          <div class="form-group">
+            {{ commentForm.content.label }}
+            {{ commentForm.content(class="form-control", rows="3") }}
+          </div>
+          {{ commentForm.submit(class="btn btn-primary") }}
+          <span class="comment-error"></span>
+        </form>
+        <hr class="form-border">
+        {% if comments %}
+        {% for comment in comments %}
+        <p>{{ comment.content }}</p>
+        <small class="text-muted">Posted by Anonymous</small>
+        <hr>
+        {% endfor %}
+        {% else %}
+        <p class="placeholder-comment">Be the first to comment on this item</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for("static", filename="js/comment.js") }}"></script>
+{% endblock %}

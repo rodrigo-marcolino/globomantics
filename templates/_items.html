@@ -1,0 +1,27 @@
+{% if items %}
+{% for item in items %}
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card h-100">
+    <div class="embed-responsive embed-responsive-16by9">
+      <a href="{{ url_for('item', item_id=item.id) }}">
+        <img class="card-img-top embed-responsive-item" src="{% if item.image %}{{ url_for('uploads', filename=item.image) }}{% else %}{{ url_for('static', filename='images/placeholder.png') }}{% endif %}" alt="">
+      </a>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">
+        <a href="{{ url_for('item', item_id=item.id) }}">{{ item.title }}</a>
+      </h4>
+      <h5>{{ "$%.2f" | format(item.price) }}</h5>
+      <p class="card-text">{{ item.description | safe }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">
+        {{ item.category }} -> {{ item.subcategory }}
+      </small>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<h1 class="offset-lg-3">No items to show.</h1>
+{% endif %}
