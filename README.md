@@ -1,6 +1,6 @@
 # globomantics
  
-Creating and Processing Web Forms with Flask Course from [Pluralsight](https://drive.google.com/file/d/1oRAn1SHuVDO4eFV53WdQRmaLm-4uWRn0/view/)
+Creating and Processing Web Forms with Flask Course from [Pluralsight](https://drive.google.com/file/d/1oRAn1SHuVDO4eFV53WdQRmaLm-4uWRn0/view)
 
 # Create Virtual Environment
 In a terminal run the following commands from the root folder of the forked project.
