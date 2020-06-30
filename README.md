@@ -33,3 +33,8 @@ Now that you are working in the virtualenv, install the project dependencies wit
 ```bash
 pip install -r requirements.txt
 ```
+
+Start the App
+```bash
+flask run
+```
