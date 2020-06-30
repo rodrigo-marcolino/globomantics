@@ -13,23 +13,23 @@ python -m venv .\venv
 
 macOS & Linux
 
-```bach 
+```bash 
 python -m venv ./venv
 ```
 Once that completes, also run this command from the same folder.
 
 Windows
 
-'''bash
+```bash
 venv\Scripts\activate.bat
 ```
+
 macOS & Linux
 
 ```bash
 source venv/bin/activate
 ```
 Now that you are working in the virtualenv, install the project dependencies with the following command.
-
 ```bash
 pip install -r requirements.txt
 ```
